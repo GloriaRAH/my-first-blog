@@ -1,0 +1,30 @@
+Your API token
+e99fdc0f7ae2109703cb435bdd6fb76c9c0f8e96
+
+Warning: our API is new and in beta and not officially supported, and may change at any time, and it is not to be relied upon, and may cause unpredictable growth of extra ears. Extra ears not guaranteed.
+
+Use this token for our API by setting a request header called Authorization, followed by Token <token>, eg:
+
+
+----------------------------------------------------------------
+
+import requests
+my_domain = 'murakami97.pythonanywhere.com'
+username = 'murakami97'
+token = 'e99fdc0f7ae2109703cb435bdd6fb76c9c0f8e96'
+
+response = requests.post(
+  'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain}/reload/'.format(
+      username=username, domain=my_domain
+  ),
+  headers={'Authorization': 'Token {token}'.format(token=token)}
+)
+if response.status_code == 200:
+  print('All OK')
+else:
+  print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))
+                        
+----------------------------------------------------------------
+
+
+TIP: Your API token is also available from pythonanywhere consoles, tasks and webapps, as an Environment Variable, $API_TOKEN
